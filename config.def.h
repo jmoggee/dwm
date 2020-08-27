@@ -27,10 +27,9 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	/* { "Gimp",     NULL,       NULL,       0,            1,           -1 }, */
-	/* { "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 }, */
-  NULL,
+	/* class      		instance    title       	tags mask		isfloating	monitor */
+	{ "Pavucontrol",    NULL,       NULL,       	0,				1,			-1 },
+	{ NULL,       		NULL,       "Event Tester", 0,				1,			-1 },
 };
 
 /* layout(s) */
@@ -97,7 +96,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|ShiftMask,             XK_e,      quit,           {0} },
+	{ MODKEY|ShiftMask,             XK_BackSpace, quit,        {0} },
 
 /* keyboard volume control */
 	{ 0,                            XF86XK_AudioLowerVolume, spawn, SHCMD("pamixer -i 5") },
