@@ -60,10 +60,6 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
-static const char *browsercmd[] = { "qutebrowser", NULL };
-static const char *upvol[]   = { "pamixer", "-i", "5", NULL };
-static const char *downvol[] = { "pamixer", "-d", "5", NULL };
-static const char *mutevol[] = { "pamixer", "-t", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -104,12 +100,15 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_e,      quit,           {0} },
 
 /* keyboard volume control */
-	{ 0,                            XF86XK_AudioLowerVolume, spawn, {.v = downvol } },
-	{ 0,                            XF86XK_AudioMute,        spawn, {.v = mutevol } },
-	{ 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = upvol   } },
+	{ 0,                            XF86XK_AudioLowerVolume, spawn, SHCMD("pamixer -i 5") },
+	{ 0,                            XF86XK_AudioMute,        spawn, SHCMD("pamixer -d 5") },
+	{ 0,                            XF86XK_AudioRaiseVolume, spawn, SHCMD("pamixer -t") },
 
 	/* commonly used apps on F-keys */
-	{ MODKEY,                       XK_F1,     spawn,          {.v = browsercmd } },
+	{ MODKEY,                       XK_F1,     spawn,          SHCMD("firefox") },
+	{ MODKEY,                       XK_F2,     spawn,          SHCMD("qutebrowser") },
+
+	{ MODKEY,                       XK_F5,     spawn,          SHCMD("dbeaver") },
 };
 
 /* button definitions */
