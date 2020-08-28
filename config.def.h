@@ -42,6 +42,8 @@ static const Layout layouts[] = {
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
+	{ "|M|",      centeredmaster },
+	{ ">M>",      centeredfloatingmaster },
 };
 
 /* key definitions */
@@ -79,6 +81,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                       XK_u,      setlayout,      {.v = &layouts[3]} },
+	{ MODKEY,                       XK_o,      setlayout,      {.v = &layouts[4]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
@@ -99,9 +103,9 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_BackSpace, quit,        {0} },
 
 /* keyboard volume control */
-	{ 0,                            XF86XK_AudioLowerVolume, spawn, SHCMD("pamixer -i 5") },
-	{ 0,                            XF86XK_AudioMute,        spawn, SHCMD("pamixer -d 5") },
-	{ 0,                            XF86XK_AudioRaiseVolume, spawn, SHCMD("pamixer -t") },
+	{ 0,                            XF86XK_AudioRaiseVolume, spawn, SHCMD("pamixer -i 5") },
+	{ 0,                            XF86XK_AudioLowerVolume, spawn, SHCMD("pamixer -d 5") },
+	{ 0,                            XF86XK_AudioMute,        spawn, SHCMD("pamixer -t") },
 
 	/* commonly used apps on F-keys */
 	{ MODKEY,                       XK_F1,     spawn,          SHCMD("firefox") },
